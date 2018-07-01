@@ -1,0 +1,45 @@
+This is my ENGN1931z Final Project.
+Contained in this folder is the scripts to actually create the voice assistant.
+When running, Main.py takes care of the hot word detection and then passes the
+request to the other files depending on what is needed. I decided to spread each
+feature into a different file so that the project could be added to easily.
+Simply add a new file with the feature and add one line to the onRequest method
+in Main.py.
+
+The major features are:
+Spotify playback --> spot.py
+Retrieve and play rss podcasts --> podcast.py
+Get weather (temperature) --> weather.py
+Get events and set reminders in iCloud --> icloud.py
+Set an alarm clock --> alarm.py
+
+
+Set up instructions:
+    To download Raspotify which is a program to make your pi into a spotify
+    connect device run this line in the command line:
+
+    curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
+
+    Aside from installing the python packages needed, you will also have to
+    delete the default audio options of the pi to guarantee that everything
+    plays out of the usb speakers. This is done by the instructions below, which
+    were copied from https://github.com/dtcooper/raspotify/issues/40
+
+    sudo nano /etc/modprobe.d/alsa-blacklist.conf
+    add blacklist snd_bcm2835
+    save & close
+    reboot
+    sudo nano /etc/modprobe.d/alsa-base.conf
+    add options snd-usb-audio index=0
+    save & close
+    reboot
+    You should now see only your USB Audio when you type in aplay -l
+
+    To recreate this directory on your own you will also have to download SnowBoy
+    which can be done from the link provided below. In this case that is not needed
+    as the folder is already included.
+
+    https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.1.1.tar.bz2
+
+To run the program go to this directory and type: "python main.py" into the
+command line.
